@@ -373,10 +373,9 @@ Content-Disposition: attachment; filename=\"%s_%07.3fMHz_%03.1fMsps_%10dsec.jpg\
 
 // ==================================================================================================
 
-template <class Float>
  class Inp_Filter
 { public:
-
+   typedef float Float;
    Thread Thr;                                      // processing thread
    volatile int StopReq;
    RF_Acq *RF;
@@ -419,7 +418,7 @@ template <class Float>
    }
 
    static void *ThreadExec(void *Context)
-   { Inp_Filter<Float> *This = (Inp_Filter<Float> *)Context; return This->Exec(); }
+   { Inp_Filter *This = (Inp_Filter *)Context; return This->Exec(); }
 
    void *Exec(void)
    { // printf("Inp_Filter.Exec() ... Start\n");
@@ -458,14 +457,13 @@ template <class Float>
 
 // ==================================================================================================
 
-template <class Float>
- class Inp_FFT                                      // FFT of the RF data
+class Inp_FFT                                       // FFT of the RF data
 { public:
-
+   typedef float Float;
    Thread Thr;                                      // processing thread
    volatile int StopReq;
    RF_Acq *RF;
-   Inp_Filter<Float> *Filter;
+   Inp_Filter *Filter;
 
    int              FFTsize;
 #ifdef USE_RPI_GPU_FFT
@@ -483,7 +481,7 @@ template <class Float>
    const static uint32_t OutPipeSync = 0x254F7D00 + sizeof(Float);
 
   public:
-   Inp_FFT(RF_Acq *RF, Inp_Filter<Float> *Filter=0)
+   Inp_FFT(RF_Acq *RF, Inp_Filter *Filter=0)
    { Window=0; this->RF=RF; this->Filter=Filter; Preset(); OutPipe=(-1); Config_Defaults(); }
 
    void Config_Defaults(void)
@@ -602,10 +600,10 @@ template <class Float>
 
 // ==================================================================================================
 
-template <class Float>
  class GSM_FFT                                      // FFT of the GSM RF data
 { public:
 
+   typedef float Float;
    Thread Thr;                                      // processing thread
    volatile int StopReq;
    RF_Acq *RF;                                      // pointer to the RF acquisition
@@ -807,19 +805,18 @@ template <class Float>
 // ==================================================================================================
 
 
-template <class Float>
  class HTTP_Server
 { public:
 
    int                 Port;      // listenning port
    Thread              Thr;       // processing thread
    RF_Acq             *RF;        // pointer to RF acquisition
-   GSM_FFT<Float>     *GSM;
+   GSM_FFT            *GSM;
    char                Host[32];  // Host name
    char     ConfigFileName[PATH_MAX];
 
   public:
-   HTTP_Server(RF_Acq *RF, GSM_FFT<Float> *GSM)
+   HTTP_Server(RF_Acq *RF, GSM_FFT *GSM)
    { this->RF=RF; this->GSM=GSM;
      Host[0]=0; SocketAddress::getHostName(Host, 32);
      Config_Defaults(); }
@@ -1037,14 +1034,14 @@ RF spectrograms:\r\n\
 
 // ==================================================================================================
 
-  RF_Acq             RF;                         // RF input: acquires RF data for OGN and selected GSM frequency
+  RF_Acq      RF;                         // RF input: acquires RF data for OGN and selected GSM frequency
 
-  Inp_Filter<float>  Filter(&RF);                // Coherent interference filter
+  Inp_Filter  Filter(&RF);                // Coherent interference filter
 
-  Inp_FFT<float>     FFT(&RF, &Filter);          // FFT for OGN demodulator
-  GSM_FFT<float>     GSM(&RF);                   // GSM frequency calibration
+  Inp_FFT     FFT(&RF, &Filter);          // FFT for OGN demodulator
+  GSM_FFT     GSM(&RF);                   // GSM frequency calibration
 
-  HTTP_Server<float> HTTP(&RF, &GSM);            // HTTP server to show status and spectrograms
+  HTTP_Server HTTP(&RF, &GSM);            // HTTP server to show status and spectrograms
 
 void SigHandler(int signum) // Signal handler, when user pressed Ctrl-C or process stops for whatever reason
 { RF.StopReq=1; }
