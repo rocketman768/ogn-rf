@@ -105,48 +105,48 @@ class RTLSDR
 
    static int  getDeviceUsbStrings(uint32_t DeviceIndex, char *Manufacturer, char *Product, char *Serial)
              { return rtlsdr_get_device_usb_strings(DeviceIndex, Manufacturer, Product, Serial); }  // USB description strings
-   int         getUsbStrings(char *Manufacturer, char *Product, char *Serial)
+   int         getUsbStrings(char *Manufacturer, char *Product, char *Serial) const
              { return rtlsdr_get_usb_strings(Device, Manufacturer, Product, Serial); }  // USB description strings
              // { return rtlsdr_get_device_usb_strings(DeviceIndex, Manufacturer, Product, Serial); }  // USB description strings
 
    static const char *getDeviceName(uint32_t DeviceIndex) { return rtlsdr_get_device_name(DeviceIndex); }  // name of given device
-          const char *getDeviceName(void)                 { return rtlsdr_get_device_name(DeviceIndex); }  // name of this device open by this object
+          const char *getDeviceName(void) const                 { return rtlsdr_get_device_name(DeviceIndex); }  // name of this device open by this object
 
-   int     getTunerType(void) { return rtlsdr_get_tuner_type(Device); }
-   const char *getTunerTypeName(void)
+   int     getTunerType(void) const { return rtlsdr_get_tuner_type(Device); }
+   const char *getTunerTypeName(void) const
    { const char *TunerType[7] = { "UNKNOWN", "E4000", "FC0012", "FC0013", "FC2580", "R820T", "R828D" } ;
      int Type=getTunerType(); if((Type<0)&&(Type>=7)) Type=0; return TunerType[Type]; }
 
-   int     getXtalFreq(uint32_t &RtlFreq, uint32_t &TunerFreq) { return rtlsdr_get_xtal_freq(Device, &RtlFreq, &TunerFreq); }
+   int     getXtalFreq(uint32_t &RtlFreq, uint32_t &TunerFreq) const { return rtlsdr_get_xtal_freq(Device, &RtlFreq, &TunerFreq); }
    int     setXtalFreq(uint32_t  RtlFreq, uint32_t  TunerFreq) { return rtlsdr_set_xtal_freq(Device,  RtlFreq,  TunerFreq); }
 
-   int     ReadEEPROM (uint8_t *Data, uint8_t Offset, uint16_t Size) { return rtlsdr_read_eeprom (Device, Data, Offset, Size); } // read  the EEPROM
-   int     WriteEEPROM(uint8_t *Data, uint8_t Offset, uint16_t Size) { return rtlsdr_write_eeprom(Device, Data, Offset, Size); } // write the EEPROM
+   int     ReadEEPROM (uint8_t *Data, uint8_t Offset, uint16_t Size) const { return rtlsdr_read_eeprom (Device, Data, Offset, Size); } // read  the EEPROM
+   int     WriteEEPROM(uint8_t *Data, uint8_t Offset, uint16_t Size) const { return rtlsdr_write_eeprom(Device, Data, Offset, Size); } // write the EEPROM
 
    int     setOffsetTuning(int ON=1) { return rtlsdr_set_offset_tuning(Device, ON); }
-   int     getOffsetTuning(void)     { return rtlsdr_get_offset_tuning(Device);     }
+   int     getOffsetTuning(void) const     { return rtlsdr_get_offset_tuning(Device);     }
 
    int     setCenterFreq(uint32_t Frequency)
    { if(FreqRaster) { uint32_t Div=(Frequency+(FreqRaster>>1))/FreqRaster; Frequency=Div*FreqRaster; }
      return rtlsdr_set_center_freq(Device, Frequency); } // [Hz]
-  uint32_t getCenterFreq(void)                  { return rtlsdr_get_center_freq(Device); } // (fast call)
+  uint32_t getCenterFreq(void) const                  { return rtlsdr_get_center_freq(Device); } // (fast call)
 
    int     setFreqCorrection(int PPM)           { return rtlsdr_set_freq_correction(Device, PPM); } // [PPM] (Part-Per-Million)
-   int     getFreqCorrection(void)              { return rtlsdr_get_freq_correction(Device); } // (fast call)
+   int     getFreqCorrection(void) const              { return rtlsdr_get_freq_correction(Device); } // (fast call)
 
 #ifdef NEW_RTLSDR_LIB
    int setTunerBandwidth(int Bandwidth) { return rtlsdr_set_tuner_bandwidth(Device, Bandwidth); }    // [Hz] a new (advanced) function
    // int getTunerBandwidth(void)     { int Bandwidth; return rtlsdr_get_tuner_bandwidth(Device, &Bandwidth); return Bandwidth; }
-   int getTunerBandwidths(int *Bandwidth=0) { return rtlsdr_get_tuner_bandwidths(Device, Bandwidth); }
+   int getTunerBandwidths(int *Bandwidth=0) const { return rtlsdr_get_tuner_bandwidths(Device, Bandwidth); }
 #endif
 
-   int getTunerGains(int *Gain=0)           { return rtlsdr_get_tuner_gains(Device, Gain); }
+   int getTunerGains(int *Gain=0) const           { return rtlsdr_get_tuner_gains(Device, Gain); }
 #ifdef NEW_RTLSDR_LIB
-   int getTunerStageGains(int Stage, int32_t *Gain, char *Description=0) { return rtlsdr_get_tuner_stage_gains(Device, Stage, Gain, Description); }
+   int getTunerStageGains(int Stage, int32_t *Gain, char *Description=0) const { return rtlsdr_get_tuner_stage_gains(Device, Stage, Gain, Description); }
    int setTunerStageGain(int Stage, int Gain) { return rtlsdr_set_tuner_stage_gain(Device, Stage, Gain); }
 #endif
    int setTunerGain(int Gain) { return rtlsdr_set_tuner_gain(Device, Gain); }    // [0.1 dB]    set tuner gain when in manual mode
-   int getTunerGain(void)     { return rtlsdr_get_tuner_gain(Device); }
+   int getTunerGain(void) const     { return rtlsdr_get_tuner_gain(Device); }
 
    // note: new gain modes are possible with the more advanced drivers: 2=Linearity, 3=Sensitivity
    int setTunerGainMode(int Manual=1) { return rtlsdr_set_tuner_gain_mode(Device, Manual); }  // set radio-tuner gain mode: manual or automatic
@@ -172,9 +172,9 @@ class RTLSDR
 
     int     setSampleRate(uint32_t SampleRate)  { SamplePeriod = 1.0/SampleRate; SampleTime_DMS=0.0001*0.0001;
                                                   return rtlsdr_set_sample_rate(Device, SampleRate); } // [samples-per-second]
-   uint32_t getSampleRate(void)                 { return rtlsdr_get_sample_rate(Device); }
+   uint32_t getSampleRate(void) const                 { return rtlsdr_get_sample_rate(Device); }
 
-   int getDeviceIndexBySerial(const char *Serial) { return rtlsdr_get_index_by_serial(Serial); }
+   int getDeviceIndexBySerial(const char *Serial) const { return rtlsdr_get_index_by_serial(Serial); }
 
    int Open(uint32_t DeviceIndex=0, uint32_t Frequency=868000000, uint32_t SampleRate=2048000) // open given device (by the index)
    { Close();
