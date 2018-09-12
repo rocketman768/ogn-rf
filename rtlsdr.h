@@ -153,7 +153,12 @@ class RTLSDR
    int setTestMode(int Test=1) { return rtlsdr_set_testmode(Device, Test); }  // Enable/Disable test mode - a counter is send, not real data
    int ResetBuffer(void) { return rtlsdr_reset_buffer(Device); }              // obligatory, the docs say, before you start reading
 
-   int setBiasTee(int On=1) { return rtlsdr_set_bias_tee(Device, On); }       // turn on or off the T-bias circuit to power external LNA: never use with DC-shorted antennas !
+   int setBiasTee(int On=1)
+#if 0
+   { return rtlsdr_set_bias_tee(Device, On); }       // turn on or off the T-bias circuit to power external LNA: never use with DC-shorted antennas !
+#else
+   { return 0; }
+#endif
 
    double getTime(void) const                                                 // read the system time at this very moment
 #ifndef __MACH__ // _POSIX_TIMERS
