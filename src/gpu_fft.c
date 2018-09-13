@@ -28,7 +28,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <string.h>
 
-#include "gpu_fft.h"
+#include <ogn-rf/gpu_fft.h>
 
 #define GPU_FFT_BUSY_WAIT_LIMIT (5<<12) // ~1ms
 

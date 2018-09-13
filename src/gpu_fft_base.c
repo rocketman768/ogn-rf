@@ -28,8 +28,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <dlfcn.h>
 
-#include "gpu_fft.h"
-#include "mailbox.h"
+#include <ogn-rf/gpu_fft.h>
+#include <ogn-rf/mailbox.h>
 
 #define BUS_TO_PHYS(x) ((x)&~0xC0000000)
 

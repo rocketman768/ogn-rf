@@ -30,9 +30,9 @@
 
 #include <algorithm>
 
-#include "thread.h"     // multi-thread stuff
-#include "fft.h"        // Fast Fourier Transform
-#include "rtlsdr.h"     // SDR radio
+#include <ogn-rf/thread.h>     // multi-thread stuff
+#include <ogn-rf/fft.h>        // Fast Fourier Transform
+#include <ogn-rf/rtlsdr.h>     // SDR radio
 
 #define QUOTE(name) #name
 #define STR(macro) QUOTE(macro)
@@ -40,16 +40,16 @@
 #define VERSION 0.0.0
 #endif
 
-#include "freqplan.h"
+#include <ogn-rf/freqplan.h>
 
-#include "jpeg.h"
-#include "socket.h"
-#include "sysmon.h"
+#include <ogn-rf/jpeg.h>
+#include <ogn-rf/socket.h>
+#include <ogn-rf/sysmon.h>
 
-#include "pulsefilter.h"
-#include "tonefilter.h"
+#include <ogn-rf/pulsefilter.h>
+#include <ogn-rf/tonefilter.h>
 
-#include "dataserver.h"
+#include <ogn-rf/dataserver.h>
 
 // ==================================================================================================
 

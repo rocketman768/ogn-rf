@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "r2fft.h"
-#include "fft.h"
+#include <ogn-rf/r2fft.h>
+#include <ogn-rf/fft.h>
 
 #define Float double
 #define FFTsize 1024

@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdint.h>
 
-#include "serialize.h"
+#include <ogn-rf/serialize.h>
 
 int Serialize_FindSync(int Stream, uint32_t Sync)                                                // find the Sync word in the stream
 { uint32_t Buffer=0; if(read(Stream, &Buffer, sizeof(uint32_t))!=sizeof(uint32_t)) return -1;    // read the very first word

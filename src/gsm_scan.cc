@@ -12,10 +12,10 @@
 #include <vector>
 #include <algorithm>
 
-#include "rtlsdr.h"
-#include "buffer.h"
-#include "fft.h"
-#include "image.h"
+#include <ogn-rf/rtlsdr.h>
+#include <ogn-rf/buffer.h>
+#include <ogn-rf/fft.h>
+#include <ogn-rf/image.h>
 
 #define FloatType float
 

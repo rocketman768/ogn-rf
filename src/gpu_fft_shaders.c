@@ -27,49 +27,49 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 static unsigned int shader_256[] = {
-    #include "hex/shader_256.hex"
+    #include <ogn-rf/hex/shader_256.hex>
 };
 static unsigned int shader_512[] = {
-    #include "hex/shader_512.hex"
+    #include <ogn-rf/hex/shader_512.hex>
 };
 static unsigned int shader_1k[] = {
-    #include "hex/shader_1k.hex"
+    #include <ogn-rf/hex/shader_1k.hex>
 };
 static unsigned int shader_2k[] = {
-    #include "hex/shader_2k.hex"
+    #include <ogn-rf/hex/shader_2k.hex>
 };
 static unsigned int shader_4k[] = {
-    #include "hex/shader_4k.hex"
+    #include <ogn-rf/hex/shader_4k.hex>
 };
 static unsigned int shader_8k[] = {
-    #include "hex/shader_8k.hex"
+    #include <ogn-rf/hex/shader_8k.hex>
 };
 static unsigned int shader_16k[] = {
-    #include "hex/shader_16k.hex"
+    #include <ogn-rf/hex/shader_16k.hex>
 };
 static unsigned int shader_32k[] = {
-    #include "hex/shader_32k.hex"
+    #include <ogn-rf/hex/shader_32k.hex>
 };
 static unsigned int shader_64k[] = {
-    #include "hex/shader_64k.hex"
+    #include <ogn-rf/hex/shader_64k.hex>
 };
 static unsigned int shader_128k[] = {
-    #include "hex/shader_128k.hex"
+    #include <ogn-rf/hex/shader_128k.hex>
 };
 static unsigned int shader_256k[] = {
-    #include "hex/shader_256k.hex"
+    #include <ogn-rf/hex/shader_256k.hex>
 };
 static unsigned int shader_512k[] = {
-    #include "hex/shader_512k.hex"
+    #include <ogn-rf/hex/shader_512k.hex>
 };
 static unsigned int shader_1024k[] = {
-    #include "hex/shader_1024k.hex"
+    #include <ogn-rf/hex/shader_1024k.hex>
 };
 static unsigned int shader_2048k[] = {
-    #include "hex/shader_2048k.hex"
+    #include <ogn-rf/hex/shader_2048k.hex>
 };
 static unsigned int shader_4096k[] = {
-    #include "hex/shader_4096k.hex"
+    #include <ogn-rf/hex/shader_4096k.hex>
 };
 
 static struct {
