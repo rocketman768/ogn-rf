@@ -16,8 +16,17 @@ public:
     */
    HtmlFormatter(int fileDescriptor);
 
+   /**
+    * \brief Writes a table with class "httpserver"
+    */
    void format(HTTP_Server* httpServer) const;
+   /**
+    * \brief Writes a table with class "rf"
+    */
    void format(RF_Acq* rf) const;
+   /**
+    * \brief Writes a table with class "rtlsdr"
+    */
    void format(RTLSDR const& sdr) const;
   
 private:
