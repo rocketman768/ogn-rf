@@ -104,3 +104,21 @@ void HtmlFormatter::format(RTLSDR const& sdr) const {
    write("</table>");
 }
 
+#ifndef __MACH__
+void HtmlFormatter::format(struct sysinfo const& sysInfo) const {
+   struct sysinfo SysInfo;
+   sysinfo(&SysInfo);
+
+   write("<table class=\"sysinfo\">");
+   write(tableRow("CPU Load", strFmt("%3.1f/%3.1f/%3.1f",
+      static_cast<float>(SysInfo.loads[0])/UINT16_MAX,
+      static_cast<float>(SysInfo.loads[1])/UINT16_MAX,
+      static_cast<float>(SysInfo.loads[2])/UINT16_MAX)));
+   write(tableRow("Ram [free/total]", strFmt("%3.1f/%3.1f MB",
+      1e-6*SysInfo.freeram*SysInfo.mem_unit,
+      1e-6*SysInfo.totalram*SysInfo.mem_unit)));
+   write("</table>");
+
+}
+#endif /*__MACH__*/
+

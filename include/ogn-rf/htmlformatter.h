@@ -1,6 +1,9 @@
 #include <ogn-rf/rtlsdr.h>
 
 #include <string>
+#ifndef __MACH__
+#include <sys/sysinfo.h>
+#endif /*__MACH__*/
 
 // Forward declarations
 class HTTP_Server;
@@ -28,6 +31,13 @@ public:
     * \brief Writes a table with class "rtlsdr"
     */
    void format(RTLSDR const& sdr) const;
+
+#ifndef __MACH__
+   /**
+    * \brief Writes a table with class "sysinfo"
+    */
+   void format(struct sysinfo const& sysInfo) const;
+#endif /*__MACH__*/
   
 private:
    int _fd;
