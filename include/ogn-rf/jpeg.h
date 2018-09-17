@@ -18,6 +18,9 @@
     along with this software.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#ifndef JPEG_H
+#define JPEG_H
+
 #include <stdlib.h>
 #include <stdint.h>
 
@@ -126,3 +129,5 @@ class JPEG
        fclose(File); return Written; }
 
 } ;
+
+#endif /*JPEG_H*/

@@ -3,6 +3,7 @@
 
 #include <libconfig.h>
 
+#include <ogn-rf/rfacq.h>
 #include <ogn-rf/socket.h>
 #include <ogn-rf/thread.h>
 

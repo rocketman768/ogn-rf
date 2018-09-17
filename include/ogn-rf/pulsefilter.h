@@ -1,3 +1,6 @@
+#ifndef PULSEFILTER_H
+#define PULSEFILTER_H
+
 #include <stdint.h>
 
 #include "buffer.h"
@@ -66,4 +69,4 @@ class PulseFilter
 
 } ;
 
-
+#endif /*PULSEFILTER_H*/
