@@ -27,7 +27,7 @@ all: gsm_scan ogn-rf r2fft_test
 
 # Source for ogn-rf
 CSRC_ogn-rf = $(GPU_SRC)
-CPPSRC_ogn-rf = src/ogn-rf.cc
+CPPSRC_ogn-rf = src/ogn-rf.cc src/httpserver.cc
 LIB_ogn-rf = $(LIBS) -lrtlsdr -lfftw3 -lfftw3f
 OBJ_ogn-rf = $(CSRC_ogn-rf:%.c=%.o) $(CPPSRC_ogn-rf:%.cc=%.opp)
 DEP_ogn-rf = $(CSRC_ogn-rf:%.c=%.d) $(CPPSRC_ogn-rf:%.cc=%.dpp)
