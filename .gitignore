@@ -1,7 +1,7 @@
-gsm_scan
-ogn-rf
-r2fft_test
-rtlsdr-ogn
+/gsm_scan
+/ogn-rf
+/r2fft_test
+/rtlsdr-ogn
 *.swp
 *.d
 *.dpp
