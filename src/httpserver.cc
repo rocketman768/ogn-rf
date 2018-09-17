@@ -1,5 +1,6 @@
 #include <ogn-rf/httpserver.h>
 
+#include <ogn-rf/gsmfft.h>
 #include <ogn-rf/sysmon.h>
 
 #define QUOTE(name) #name
