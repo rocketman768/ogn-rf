@@ -18,6 +18,9 @@
     along with this software.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#ifndef RTLSDR_H
+#define RTLSDR_H
+
 #include <errno.h>
 #include <signal.h>
 #include <unistd.h>
@@ -300,4 +303,6 @@ class RTLSDR
 } ;
 
 // =================================================================================
+
+#endif /*RTLSDR_H*/
 
